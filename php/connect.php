@@ -1,13 +1,13 @@
 <?php
 //header("content-type:text/html;charset=utf8");
-header("content-type:application/json;charset=utf8");
+//header("content-type:application/json;charset=utf8");
 $con = mysql_connect("127.0.0.1","root","root");
 if($con){
 	$db = mysql_select_db("data",$con);
 	if($db){
 		mysql_query("SET NAMES UTF8");
 		$action = (isset($_GET['action']))?$_GET['action']:'list';
-		$id = (isset($_GET['id']))?$_GET['id']:null;
+		
 
 
 		function list1(){
@@ -19,8 +19,11 @@ if($con){
 			echo json_encode($returndata);
 		}
 			 function del1(){
-				$deldata = mysql_query("DELETE FROM word WHERE id=$id");
-				echo json_encode($returndata);
+			 	//$id = json_decode($_POST[]);
+			 	$delid = $_GET['id'];
+			 	//echo $delid;
+				$deldata = mysql_query("DELETE FROM word WHERE id=$delid");
+				//echo json_encode($returndata);
 			}
 
 		
@@ -38,7 +41,7 @@ if($con){
 				list1();
 				break;
 			case 'del':
-				del1($id);
+				del1();
 				break;
 				case 'plus':
 				plus();
@@ -47,12 +50,6 @@ if($con){
 				echo "error";
 				break;
 		}
-
-
-
-
-
-
 	}
 }
 ?>
