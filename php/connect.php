@@ -15,26 +15,12 @@ if($con){
 		$returndata = "";
 		while($result = mysql_fetch_assoc($data)){
 			$returndata[] = $result;
-			//return $returndata;
-			//echo json_encode($returndata);
 			}	
-
 			echo json_encode($returndata);
-			//return $returndata;
 		}
-
-		// function del($id){
-		// 	$deldata = mysql_query("DELETE FROM word WHERE id=$id");
-		// 	if($deldata){
-		// 		echo "删除成功";
-		// 	else
-		// 		echo "删除失败";
-		// 	}
-		// }
-
-
 			 function del1(){
-				$deldata = mysql_query("DELETE FROM 'word' WHERE id=$id");
+				$deldata = mysql_query("DELETE FROM word WHERE id=$id");
+				echo json_encode($returndata);
 			}
 
 		
@@ -44,8 +30,7 @@ if($con){
 		$word3 = $_POST['word3'];
 		$word4 = $_POST['word4'];
 		
-		$plusdata = mysql_query("INSERT INTO 'word'('word1','word2','word3','word4') VALUES('$word1','$word2','$word3','$word4')");
-		echo "INSERT INTO 'word'('id','word1','word2','word3','word4') VALUES('10','$word1','$word2','$word3','$word4')";
+		$plusdata = mysql_query("INSERT INTO word(word1,word2,word3,word4) VALUES('$word1','$word2','$word3','$word4')");
 		}
 
 		switch ($action) {
